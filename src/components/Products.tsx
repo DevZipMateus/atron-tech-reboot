@@ -1,7 +1,11 @@
 import { Monitor, Cpu, Laptop, Server, Keyboard, Cable } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import productLaptops from "@/assets/product-laptops.jpg";
-import productDesktops from "@/assets/product-desktops.jpg";
+import productMonitor from "@/assets/product-monitor.jpg";
+import productDesktop from "@/assets/product-desktop.jpg";
+import productNotebook from "@/assets/product-notebook.jpg";
+import productServer from "@/assets/product-server.jpg";
+import productPeripherals from "@/assets/product-peripherals.jpg";
+import productAccessories from "@/assets/product-accessories.jpg";
 
 const Products = () => {
   const products = [
@@ -9,31 +13,43 @@ const Products = () => {
       icon: <Monitor className="h-10 w-10" />,
       title: "Monitores",
       description: "Displays de alta qualidade para produtividade e entretenimento",
+      image: productMonitor,
+      alt: "Monitor profissional ATRON TECH",
     },
     {
       icon: <Cpu className="h-10 w-10" />,
       title: "Desktops",
       description: "Mini, SFF e convencionais para diversas aplicações",
+      image: productDesktop,
+      alt: "Desktop recondicionado ATRON TECH",
     },
     {
       icon: <Laptop className="h-10 w-10" />,
       title: "Notebooks e Macbooks",
       description: "Portáteis premium testados e certificados",
+      image: productNotebook,
+      alt: "Notebook premium ATRON TECH",
     },
     {
       icon: <Server className="h-10 w-10" />,
       title: "Servidores",
       description: "Equipamentos corporativos de alta performance",
+      image: productServer,
+      alt: "Servidores corporativos ATRON TECH",
     },
     {
       icon: <Keyboard className="h-10 w-10" />,
       title: "Periféricos",
       description: "Teclados, mouses, tablets e smartphones",
+      image: productPeripherals,
+      alt: "Periféricos e acessórios ATRON TECH",
     },
     {
       icon: <Cable className="h-10 w-10" />,
       title: "Acessórios",
       description: "Cabos, adaptadores e componentes em geral",
+      image: productAccessories,
+      alt: "Cabos e acessórios tecnológicos ATRON TECH",
     },
   ];
 
@@ -51,31 +67,21 @@ const Products = () => {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8 mb-12">
-          <div className="rounded-xl overflow-hidden shadow-elegant">
-            <img
-              src={productLaptops}
-              alt="Notebooks e Macbooks seminovos premium da ATRON TECH"
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <div className="rounded-xl overflow-hidden shadow-elegant">
-            <img
-              src={productDesktops}
-              alt="Desktops e monitores recondicionados da ATRON TECH"
-              className="w-full h-full object-cover"
-            />
-          </div>
-        </div>
-
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {products.map((product, index) => (
             <Card
               key={index}
-              className="group border-2 hover:border-primary transition-all duration-300 hover-lift cursor-pointer"
+              className="group border-2 hover:border-primary transition-all duration-300 hover-lift cursor-pointer overflow-hidden"
             >
+              <div className="aspect-square overflow-hidden">
+                <img
+                  src={product.image}
+                  alt={product.alt}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
               <CardContent className="p-6 space-y-4">
-                <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-300">
+                <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-300">
                   {product.icon}
                 </div>
                 <h3 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors">
