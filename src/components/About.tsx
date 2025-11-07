@@ -1,5 +1,6 @@
 import { Target, Eye, Heart } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import aboutImage from "@/assets/about-sustainability.jpg";
 
 const About = () => {
   const values = [
@@ -60,8 +61,8 @@ const About = () => {
           ))}
         </div>
 
-        <div className="bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10 rounded-2xl p-8 md:p-12 border border-primary/20">
-          <div className="max-w-3xl mx-auto text-center space-y-4">
+        <div className="grid lg:grid-cols-2 gap-8 items-center bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10 rounded-2xl p-8 md:p-12 border border-primary/20">
+          <div className="space-y-4">
             <h3 className="text-2xl md:text-3xl font-bold text-foreground">
               Nossa história
             </h3>
@@ -76,6 +77,13 @@ const About = () => {
               ecologicamente responsável, promovendo uma nova forma de consumo —
               inteligente, sustentável e econômica.
             </p>
+          </div>
+          <div className="rounded-xl overflow-hidden shadow-elegant">
+            <img
+              src={aboutImage}
+              alt="Laboratório de tecnologia sustentável da ATRON TECH com equipamentos sendo testados e certificados"
+              className="w-full h-full object-cover"
+            />
           </div>
         </div>
       </div>

@@ -1,5 +1,7 @@
 import { Monitor, Cpu, Laptop, Server, Keyboard, Cable } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import productLaptops from "@/assets/product-laptops.jpg";
+import productDesktops from "@/assets/product-desktops.jpg";
 
 const Products = () => {
   const products = [
@@ -47,6 +49,23 @@ const Products = () => {
             qualidade garantida e preços acessíveis. Todos passam por rigoroso
             processo de certificação técnica.
           </p>
+        </div>
+
+        <div className="grid lg:grid-cols-2 gap-8 mb-12">
+          <div className="rounded-xl overflow-hidden shadow-elegant">
+            <img
+              src={productLaptops}
+              alt="Notebooks e Macbooks seminovos premium da ATRON TECH"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <div className="rounded-xl overflow-hidden shadow-elegant">
+            <img
+              src={productDesktops}
+              alt="Desktops e monitores recondicionados da ATRON TECH"
+              className="w-full h-full object-cover"
+            />
+          </div>
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">

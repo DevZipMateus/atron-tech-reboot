@@ -1,6 +1,7 @@
 import { Phone, Mail, Clock, Instagram } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import contactSupport from "@/assets/contact-support.jpg";
 
 const Contact = () => {
   const contactInfo = [
@@ -68,28 +69,37 @@ const Contact = () => {
           ))}
         </div>
 
-        <div className="bg-gradient-to-br from-primary via-secondary to-accent rounded-2xl p-8 md:p-12 text-center text-white">
-          <h3 className="text-2xl md:text-3xl font-bold mb-4">
-            Fale conosco pelo WhatsApp
-          </h3>
-          <p className="text-lg mb-8 opacity-90 max-w-2xl mx-auto">
-            Tire suas dúvidas, solicite orçamentos ou conheça nossos produtos.
-            Atendimento rápido e personalizado.
-          </p>
-          <Button
-            asChild
-            size="lg"
-            className="bg-white text-primary hover:bg-white/90 shadow-lg hover:shadow-xl transition-all"
-          >
-            <a
-              href="https://wa.me/5511971738528"
-              target="_blank"
-              rel="noopener noreferrer"
+        <div className="grid lg:grid-cols-2 gap-8 items-center bg-gradient-to-br from-primary via-secondary to-accent rounded-2xl overflow-hidden">
+          <div className="p-8 md:p-12 text-white">
+            <h3 className="text-2xl md:text-3xl font-bold mb-4">
+              Fale conosco pelo WhatsApp
+            </h3>
+            <p className="text-lg mb-8 opacity-90">
+              Tire suas dúvidas, solicite orçamentos ou conheça nossos produtos.
+              Atendimento rápido e personalizado.
+            </p>
+            <Button
+              asChild
+              size="lg"
+              className="bg-white text-primary hover:bg-white/90 shadow-lg hover:shadow-xl transition-all"
             >
-              <Phone className="mr-2 h-5 w-5" />
-              Iniciar conversa
-            </a>
-          </Button>
+              <a
+                href="https://wa.me/5511971738528"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Phone className="mr-2 h-5 w-5" />
+                Iniciar conversa
+              </a>
+            </Button>
+          </div>
+          <div className="h-full min-h-[300px] lg:min-h-[400px]">
+            <img
+              src={contactSupport}
+              alt="Equipe de atendimento e suporte da ATRON TECH pronta para ajudar"
+              className="w-full h-full object-cover"
+            />
+          </div>
         </div>
       </div>
     </section>
