@@ -1,8 +1,11 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ExternalLink } from "lucide-react";
 import heroBackground from "@/assets/hero-background.jpg";
+import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
+  const navigate = useNavigate();
+  
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -59,6 +62,15 @@ const Hero = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
+              <Button
+                size="lg"
+                onClick={() => navigate("/vitrine")}
+                className="group bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-lg hover:shadow-xl transition-all"
+              >
+                Acessar Vitrine
+                <ExternalLink className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              </Button>
+
               <Button
                 size="lg"
                 onClick={() => scrollToSection("produtos")}
