@@ -14,7 +14,16 @@ const Vitrine = () => {
     calculateHeight();
     window.addEventListener("resize", calculateHeight);
     
-    return () => window.removeEventListener("resize", calculateHeight);
+    // Carregar o script do badge MonteSite
+    const script = document.createElement("script");
+    script.src = "https://vaabpicspdbolvutnscp.supabase.co/functions/v1/get-footer-iframe";
+    script.async = true;
+    document.body.appendChild(script);
+    
+    return () => {
+      window.removeEventListener("resize", calculateHeight);
+      document.body.removeChild(script);
+    };
   }, []);
 
   return (
@@ -31,6 +40,8 @@ const Vitrine = () => {
           title="Demonstração de Vitrine"
         />
       </main>
+      {/* Badge MonteSite */}
+      <div id="montesite-footer-badge"></div>
     </div>
   );
 };
