@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 const Header = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   useEffect(() => {
@@ -14,21 +15,34 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
   const handleNavigation = (id: string, isRoute?: boolean) => {
+    setIsMobileMenuOpen(false);
+    
     if (isRoute) {
       navigate(id);
-      setIsMobileMenuOpen(false);
     } else {
-      const element = document.getElementById(id);
-      if (element) {
-        const offset = 80;
-        const elementPosition = element.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - offset;
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: "smooth"
-        });
-        setIsMobileMenuOpen(false);
+      // Se não estiver na home, navega para home primeiro
+      if (location.pathname !== "/") {
+        navigate("/");
+        // Aguarda a navegação e depois faz scroll
+        setTimeout(() => {
+          scrollToSection(id);
+        }, 100);
+      } else {
+        scrollToSection(id);
       }
+    }
+  };
+
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      const offset = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
     }
   };
   
