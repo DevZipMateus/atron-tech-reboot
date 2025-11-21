@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 const Header = () => {
+  const navigate = useNavigate();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   useEffect(() => {
@@ -11,19 +13,25 @@ const Header = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      const offset = 80;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - offset;
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth"
-      });
+  const handleNavigation = (id: string, isRoute?: boolean) => {
+    if (isRoute) {
+      navigate(id);
       setIsMobileMenuOpen(false);
+    } else {
+      const element = document.getElementById(id);
+      if (element) {
+        const offset = 80;
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - offset;
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth"
+        });
+        setIsMobileMenuOpen(false);
+      }
     }
   };
+  
   const navLinks = [{
     id: "inicio",
     label: "Início"
@@ -34,8 +42,9 @@ const Header = () => {
     id: "produtos",
     label: "Produtos"
   }, {
-    id: "vitrine-section",
-    label: "Vitrine"
+    id: "/vitrine",
+    label: "Vitrine",
+    isRoute: true
   }, {
     id: "contato",
     label: "Contato"
@@ -44,13 +53,13 @@ const Header = () => {
       <div className="container-custom">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <button onClick={() => scrollToSection("inicio")} className="flex items-center gap-3 hover:opacity-80 transition-opacity">
+          <button onClick={() => handleNavigation("inicio")} className="flex items-center gap-3 hover:opacity-80 transition-opacity">
             <img src="/logo.png" alt="ATRON TECH - Tecnologia que renova" className="h-28 w-auto" />
           </button>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-1">
-            {navLinks.map(link => <Button key={link.id} variant="ghost" onClick={() => scrollToSection(link.id)} className="text-foreground hover:text-primary transition-colors">
+            {navLinks.map(link => <Button key={link.id} variant="ghost" onClick={() => handleNavigation(link.id, link.isRoute)} className="text-foreground hover:text-primary transition-colors">
                 {link.label}
               </Button>)}
           </nav>
@@ -64,7 +73,7 @@ const Header = () => {
         {/* Mobile Menu */}
         {isMobileMenuOpen && <nav className="md:hidden py-4 border-t border-border bg-background/95 backdrop-blur-md">
             <div className="flex flex-col gap-2">
-              {navLinks.map(link => <Button key={link.id} variant="ghost" onClick={() => scrollToSection(link.id)} className="justify-start text-foreground hover:text-primary transition-colors">
+              {navLinks.map(link => <Button key={link.id} variant="ghost" onClick={() => handleNavigation(link.id, link.isRoute)} className="justify-start text-foreground hover:text-primary transition-colors">
                   {link.label}
                 </Button>)}
             </div>
