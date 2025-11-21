@@ -14,6 +14,10 @@ const Vitrine = () => {
     calculateHeight();
     window.addEventListener("resize", calculateHeight);
     
+    // Travar scroll da página
+    document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
+    
     // Carregar o script do badge MonteSite
     const script = document.createElement("script");
     script.src = "https://vaabpicspdbolvutnscp.supabase.co/functions/v1/get-footer-iframe";
@@ -22,14 +26,17 @@ const Vitrine = () => {
     
     return () => {
       window.removeEventListener("resize", calculateHeight);
+      // Restaurar scroll ao sair da página
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
       document.body.removeChild(script);
     };
   }, []);
 
   return (
-    <div className="h-screen overflow-hidden flex flex-col">
+    <div className="h-screen w-screen overflow-hidden flex flex-col fixed inset-0">
       <Header />
-      <main className="flex-1 w-full" style={{ marginTop: "80px" }}>
+      <main className="flex-1 w-full overflow-hidden" style={{ marginTop: "80px" }}>
         <iframe
           src="https://lafelseminovos.egestor.com.br/vitrine/"
           style={{
